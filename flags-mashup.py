@@ -39,11 +39,15 @@ def main():
     if not os.path.exists('swaps'):
         os.makedirs('swaps')
     country_one = 'India'
+    country_two = 'United States'
+    country_flag_swap(country_one, country_two)
+
+
+def country_flag_swap(country_one, country_two):
     country_one_code = COUNTRY_CODES.get(country_one.title())
     country_one_flag = country_flag(country_one)
     country_one_flag_colors = sorted(country_flag_colors(country_one_flag), reverse=True)
     country_one_flag_colors_swap = [COLOR_GET(*color) for color in country_one_flag_colors[:3]]
-    country_two = 'United States'
     country_two_code = COUNTRY_CODES.get(country_two.title())
     country_two_flag = country_flag(country_two)
     country_two_flag_colors = sorted(country_flag_colors(country_two_flag), reverse=True)
@@ -51,8 +55,10 @@ def main():
     # Remove Identical colors
     remove_identical_colors(country_one_flag_colors_swap, country_two_flag_colors_swap)
     # Swap pixels
-    swap_pixels_and_save(country_one_code, country_two_code, country_one_flag, country_one_flag_colors_swap, country_two_flag_colors_swap)
-    swap_pixels_and_save(country_two_code, country_one_code, country_two_flag, country_two_flag_colors_swap, country_one_flag_colors_swap)
+    swap_pixels_and_save(country_one_code, country_two_code, country_one_flag, country_one_flag_colors_swap,
+                         country_two_flag_colors_swap)
+    swap_pixels_and_save(country_two_code, country_one_code, country_two_flag, country_two_flag_colors_swap,
+                         country_one_flag_colors_swap)
     # Clean up
     shutil.rmtree('tmp')
     country_one_flag.close()
