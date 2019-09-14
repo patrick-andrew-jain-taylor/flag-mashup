@@ -3,11 +3,14 @@ import urllib.request
 from svglib.svglib import svg2rlg
 from reportlab.graphics import renderPM
 from PIL import Image
+from collections import namedtuple
 
 COUNTRY_CODES = {
     'India': 'IN',
     'United States': 'US'
 }
+
+COLOR_GET = namedtuple('COLOR_GET', 'count RGB')
 
 
 def country_flag(country):
@@ -32,10 +35,10 @@ def main():
     india_flag_colors = sorted(country_flag_colors(india_flag), reverse=True)
     us_flag = country_flag('United States')
     us_flag_colors = sorted(country_flag_colors(us_flag), reverse=True)
-    india_flag_colors_swap = india_flag_colors[:3]
-    us_flag_colors_swap = us_flag_colors[:3]
+    india_flag_colors_swap = [COLOR_GET(*color) for color in india_flag_colors[:3]]
+    us_flag_colors_swap = [COLOR_GET(*color) for color in us_flag_colors[:3]]
     for india_color, us_color in zip(india_flag_colors_swap, us_flag_colors_swap):
-        print(india_color, us_color)
+        print(india_color.RGB, us_color.RGB)
 
 
 
