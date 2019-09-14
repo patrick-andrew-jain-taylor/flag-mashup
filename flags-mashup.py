@@ -11,7 +11,7 @@ COUNTRY_CODES = {
 
 
 def country_flag_colors(country):
-    flag_remote = rapi.get_country_by_country_code(COUNTRY_CODES.get(country.capitalize())).flag
+    flag_remote = rapi.get_country_by_country_code(COUNTRY_CODES.get(country.title())).flag
     flag_local_svg = 'tmp/{}.svg'.format(country.lower())
     flag_local_png = 'tmp/{}.png'.format(country.lower())
     urllib.request.urlretrieve(flag_remote, flag_local_svg)
