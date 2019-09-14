@@ -3,3 +3,4 @@ future
 virtualenv
 python-restcountries
 svglib
+Pillow
