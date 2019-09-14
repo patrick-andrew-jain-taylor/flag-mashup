@@ -32,6 +32,11 @@ def main():
     india_flag_colors = sorted(country_flag_colors(india_flag), reverse=True)
     us_flag = country_flag('United States')
     us_flag_colors = sorted(country_flag_colors(us_flag), reverse=True)
+    india_flag_colors_swap = india_flag_colors[:3]
+    us_flag_colors_swap = us_flag_colors[:3]
+    for india_color, us_color in zip(india_flag_colors_swap, us_flag_colors_swap):
+        print(india_color, us_color)
+
 
 
 if __name__ == '__main__':
