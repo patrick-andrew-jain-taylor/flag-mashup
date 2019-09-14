@@ -29,10 +29,10 @@ def country_flag_colors(flag_pil):
 
 def main():
     india_flag = country_flag('India')
-    us_flag = country_flag('United States')
     india_flag_colors = sorted(country_flag_colors(india_flag), reverse=True)
+    us_flag = country_flag('United States')
     us_flag_colors = sorted(country_flag_colors(us_flag), reverse=True)
-    print(len(india_flag_colors), len(us_flag_colors))
+
 
 
 if __name__ == '__main__':
