@@ -34,6 +34,5 @@ def main():
     us_flag_colors = sorted(country_flag_colors(us_flag), reverse=True)
 
 
-
 if __name__ == '__main__':
     main()
