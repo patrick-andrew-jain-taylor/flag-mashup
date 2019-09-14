@@ -36,6 +36,8 @@ def country_flag_colors(flag_pil):
 def main():
     if not os.path.exists('tmp'):
         os.makedirs('tmp')
+    if not os.path.exists('swaps'):
+        os.makedirs('swaps')
     country_one = 'India'
     country_one_code = COUNTRY_CODES.get(country_one.title())
     country_one_flag = country_flag(country_one)
@@ -51,8 +53,11 @@ def main():
     # Swap pixels
     swap_pixels_and_save(country_one_code, country_two_code, country_one_flag, country_one_flag_colors_swap, country_two_flag_colors_swap)
     swap_pixels_and_save(country_two_code, country_one_code, country_two_flag, country_two_flag_colors_swap, country_one_flag_colors_swap)
-    # Delete tmp
+    # Clean up
     shutil.rmtree('tmp')
+    country_one_flag.close()
+    country_two_flag.close()
+
 
 def swap_pixels_and_save(country_code_one, country_code_two, country_one_flag, country_one_colors_swap, country_two_colors_swap):
     flag_pixels = country_one_flag.load()
