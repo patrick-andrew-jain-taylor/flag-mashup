@@ -4,6 +4,8 @@ from svglib.svglib import svg2rlg
 from reportlab.graphics import renderPM
 from PIL import Image
 from collections import namedtuple
+import os
+import shutil
 
 COUNTRY_CODES = {
     'India': 'IN',
@@ -32,6 +34,8 @@ def country_flag_colors(flag_pil):
 
 
 def main():
+    if not os.path.exists('tmp'):
+        os.makedirs('tmp')
     country_one = 'India'
     country_one_code = COUNTRY_CODES.get(country_one.title())
     country_one_flag = country_flag(country_one)
@@ -47,11 +51,12 @@ def main():
     # Swap pixels
     swap_pixels_and_save(country_one_code, country_two_code, country_one_flag, country_one_flag_colors_swap, country_two_flag_colors_swap)
     swap_pixels_and_save(country_two_code, country_one_code, country_two_flag, country_two_flag_colors_swap, country_one_flag_colors_swap)
-
+    # Delete tmp
+    shutil.rmtree('tmp')
 
 def swap_pixels_and_save(country_code_one, country_code_two, country_one_flag, country_one_colors_swap, country_two_colors_swap):
     flag_pixels = country_one_flag.load()
-    swap_png = 'tmp/{}-to-{}-swap.png'.format(country_code_one, country_code_two)
+    swap_png = 'swaps/{}-to-{}-swap.png'.format(country_code_one, country_code_two)
     width, height = country_one_flag.size
     for x in range(width):
         for y in range(height):
